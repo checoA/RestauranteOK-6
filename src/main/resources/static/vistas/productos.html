@@ -1,0 +1,49 @@
+<div id="content-productos" ng-controller="ProductosController">
+ 	<div class="mdl-grid" id="grid" style="color:#000!important">	
+			<div id="p-plat" class="mdl-cell mdl-cell--6-col">
+				<div>
+					<input class="mdl-cell--12-col" ng-keypress="filtrar()" type="text" ng-model="filtro" placeholder="Buscar...">
+				</div>
+				<div id="p-prod-temp" class="mdl-grid">
+					<div class="mdl-cell--6-col">
+						<input class="mdl-cell--12-col" placeholder="nombre" ng-model="producto.nombre">
+						<input class="mdl-cell--12-col" placeholder="precio" type="number" ng-model="producto.precio">
+						<select class="mdl-cell--12-col" ng-model="producto.categoria.id" ng-options="item.id as item.nombre for item in categorias"></select>
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="save()">Guardar</button>
+					</div>
+					<div class="mdl-cell--6-col">
+						<div class="mdl-grid" ng-repeat="item in temp">
+							<p class="mdl-cell--7-col">{{item.inventario.nombre}}</p>
+							<input class="mdl-cell--3-col" type="number" ng-model="item.cantidad">
+							<button class="mdl-cell--2-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="eliminar(item)">x</button>
+						</div>
+					</div>
+				</div>
+				<div class="mdl-grid" ng-repeat="item in productosArray">
+					<div class="mdl-grid mdl-cell--6-col">
+						<label class="mdl-cell--12-col">{{item.nombre}}</label>
+						<label class="mdl-cell--12-col">${{item.precio}}</label>
+						<label class="mdl-cell--12-col">{{item.categoria.nombre}}</label>
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="sendToEdit(item)">Editar</button>
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="eliminarDB(item)">Eliminar</button>
+					</div>
+					<div class="mdl-cell--6-col">
+						<div class="mdl-cell--12-col">
+							<div class="mdl-grid" ng-repeat="subitem in item.producto">
+							<p class="mdl-cell--8-col" >{{subitem.inventario.nombre}}</p><p class="mdl-cell--4-col"> {{subitem.cantidad}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="p-inv" class="mdl-cell mdl-cell--4-col">
+				<div>
+					<div id="p-item" ng-repeat="item in inventarioArray" ng-click="agregar(item)">
+						<div class="button-general">
+							<p>{{item.nombre}}</p>
+						</div>
+					</div>					
+				</div>
+			</div>		
+ 	</div>
+</div>

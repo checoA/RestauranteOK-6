@@ -1,0 +1,59 @@
+ <div id="content-gastos" ng-controller="GastosController">
+      	<div class="mdl-layout mdl-js-layout">
+      		<main class="mdl-layout__content">
+      		<div class="mdl-grid">
+
+      			<div class="mdl-cell mdl-cell--9-col mdl-cell--3-offset-desktop">
+      			<div class="mdl-grid">
+      				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-typography--text-right mdl-cell mdl-cell--6-col">
+                	<input type="text" class="mdl-textfield__input" id="nuevo" ng-model="gasto.nombre">
+                	<label for="nuevo" class="mdl-textfield__label">Nuevo</label>
+                	</div>
+                	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent button-general" ng-click="setTG()">
+                		Guardar
+                	</button>
+      			</div>
+      			</div>
+
+      			<div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      				<div class="mdl-grid">
+
+      					<div class="mdl-textfield mdl-cell mdl-cell--8-col-tablet mdl-cell--12-col">
+                  		   <input type="date" class="mdl-textfield__input" id="cmp_fecha" ng-model="concepto.fecha">
+                  		</div>
+
+                  		<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col">
+                  		   <input type="text" class="mdl-textfield__input" id="cmp_concepto" ng-model="concepto.nombre">
+                  		   <label for="cmp_concepto" class="mdl-textfield__label">CONCEPTO...</label>
+                  		</div>
+
+                  		<div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--4-col-tablet mdl-cell--12-col">
+                  		   <input type="number" class="mdl-textfield__input" id="cmp_cantidad" ng-model="concepto.total">
+                  		   <label for="cmp_total" class="mdl-textfield__label">CANTIDAD $...</label>
+                  		</div>
+
+                  		<button ng-click="setG()" class="button-general mdl-button--accent mdl-button mdl-js-button mdl-button--raised mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-cell--2-offset-tablet">
+                  				Enviar
+                  		</button>
+      				</div>
+      			</div>
+
+      			<div class="mdl-cell mdl-cell--9-col">
+      				<div class="mdl-grid">
+      					<div ng-repeat="item in tipoGastoArray"  class="demo-card-square mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-color--primary">
+						  <div ng-click="concepto.nombre = item.nombre" class="mdl-card__title mdl-card--expand">
+						    <h2 class="mdl-card__title-text mdl-color-text--white">{{item.nombre}}</h2>
+						  </div>
+						  <div class="mdl-card__actions mdl-card--border">
+						    <a ng-click=deleteTG(item) class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+						      Eliminar
+						    </a>
+						  </div>
+						</div>
+						
+      				</div>
+      			</div>
+      		</div>
+      		</main>
+      	</div>
+</div>

@@ -1,0 +1,55 @@
+<div id="content-usuarios" ng-controller="UsuariosController">
+	<div class="mdl-grid">
+		<table id="tbl-usuarios" class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table" 
+						style="white-space: normal;">
+		<thead class="mdl-color--primary">
+			<tr>
+				<th>Nombre</th>
+				<th>Cobrar</th>
+				<th>Empresa</th>
+				<th>Barra</th>
+				<th>Gastos</th>
+				<th>Inventario</th>
+				<th>Mesas</th>
+				<th>Ordenes</th>
+				<th>Platillos</th>
+				<th>Usuarios</th>
+				<th>Reportes</th>
+				<th></th>
+			</tr>
+		</thead>
+			<tr ng-repeat="item in usuariosArray">
+				<td>{{item.nombre}} {{item.apepat}} {{item.apemat}}</td>
+				<td><input ng-model="item.permiso.cobrar" type="checkbox"></td>
+				<td><input ng-model="item.permiso.empresa" type="checkbox"></td>
+				<td><input ng-model="item.permiso.ver_barra" type="checkbox"></td>
+				<td><input ng-model="item.permiso.ver_gastos" type="checkbox"></td>
+				<td><input ng-model="item.permiso.ver_inventario" type="checkbox"></td>
+				<td><input ng-model="item.permiso.ver_mesas" type="checkbox"></td>
+				<td><input ng-model="item.permiso.ver_ordenes" type="checkbox"></td>
+				<td><input ng-model="item.permiso.ver_platillos" type="checkbox"></td>
+				<td><input ng-model="item.permiso.ver_usuarios" type="checkbox"></td>
+				<td><input ng-model="item.permiso.visualizar_reportes" type="checkbox"></td>
+				<td><button ng-click="guardar(item)" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Guardar</button>
+				<button ng-click="eliminar(item)" ng-if="item.nombre != 'webmaster'" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Eliminar</button>
+				<button ng-click="editar(item)" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Editar</button></td>
+			</tr>
+		</table>
+	</div>
+	<dialog id="dialog-user" class="mdl-dialog mdl-cell--8-col-desktop mdl-cell--8-col-tablet  mdl-cell--8-col-phone ">
+		<div class="mdl-dialog__title mdl-color--primary"><label>Cambiar contraseña de {{usuario.nombre}}</label></div>
+		<div class="mdl-dialog__content">
+			<div class="mdl-grid">
+				<p class="mdl-cell--6-col">Nueva contraseña:</p>
+				<input type="password" class="mdl-cell--6-col" value="{{usuario.password}}" ng-model="usuario.password">
+				<p class="mdl-cell--6-col">Confirmar contraseña:</p>
+				<input type="password" class="mdl-cell--6-col" value="{{usuario.confirmarPassword}}" ng-model="usuario.confirmarPassword">
+				
+			</div>
+		</div>
+		<div class="mdl-dialog__actions">
+		<button class="mdl-button close">Cerrar</button>
+				<button class="mdl-button" ng-click="actualizar()">Aceptar</button>
+		</div>
+	</dialog>
+</div>

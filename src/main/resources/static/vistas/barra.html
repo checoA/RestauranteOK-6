@@ -1,0 +1,150 @@
+<div id="content-barra" ng-controller="BarraController">
+<!-- 	<div class="mdl-cell--12-col"><h3>Mesa {{num_mesa}}</h3></div> -->
+	<div id="cont-calculadora">
+		<div id="calculadora">
+			<div class="top">
+				<div class="screen">{{cantidad}}</div>
+			</div>
+			<div class="keys">
+				<span ng-click="calcular('7')">7</span>
+				<span ng-click="calcular('8')">8</span>
+				<span ng-click="calcular('9')">9</span>
+				<span ng-click="calcular('.5')">1/2</span>
+				<span ng-click="calcular('4')">4</span>
+				<span ng-click="calcular('5')">5</span>
+				<span ng-click="calcular('6')">6</span>
+				<span ng-click="calcular('.25')">1/4</span>
+				<span ng-click="calcular('1')">1</span>
+				<span ng-click="calcular('2')">2</span>
+				<span ng-click="calcular('3')">3</span>
+				<span ng-click="calcular('.75')">3/4</span>
+				<span ng-click="calcular('0')">0</span>
+				<span ng-click="calcular('.')">.</span>
+				<span ng-click="calcular('r')" class='clear'>R</span>
+				<span ng-click="calcular('c')" class='clear'>C</span>
+			</div>
+		</div>
+	</div>
+	<div id="cont-categorias">
+		<div class="grupo-categorias">
+			<button class="btn-categoria" ng-init="r='rotacion'" ng-click="r='rotacion';s=t=v=w=x=''"><img src="img/entradas.jpg" alt=""><span class="color-7">Carnes</span></button>
+			<button class="btn-categoria" ng-click="s='rotacion';r=t=v=w=x=''"><img src="img/sopas.jpg" alt=""><span class="color-1">Entradas</span></button>
+			<button class="btn-categoria" ng-click="v='rotacion';r=s=t=w=x=''"><img src="img/bebidas.jpg" alt=""><span class="color-3">Bebidas</span></button>
+			<button class="btn-categoria" ng-click="w='rotacion';r=s=t=v=x=''"><img src="img/postres.jpg" alt=""><span class="color-4">Postres</span></button>
+			<button class="btn-categoria" ng-click="x='rotacion';r=s=t=v=w=''"><img src="img/otros.jpg" alt=""><span class="color-5">Otros</span></button>
+			<button class="btn-categoria" ng-click="t='rotacion';r=s=v=w=x=''"><img src="img/entradas.jpg" alt=""><span class="color-6">Para Llevar</span></button>
+			<label for="ver-comanda" class="btn-categoria"><img src="img/comanda.jpg" alt=""><span>Comanda</span></label>
+		</div>
+	</div>
+	<input type="checkbox" id="ver-comanda">
+	<div id="cont-comanda">
+		<div class="acciones">
+<!-- 			<button class='bton bton-blue' ng-click="enviarVenta()">Enviar</button> -->
+			<button class='bton bton-violet' ng-if="permisos == true" ng-click="imprimirPreviaVenta()">Imprimir Previa Venta</button>
+			<button class='bton bton-blue' ng-if="permisos == true" ng-click="venta()">Venta</button>
+			<button class='bton bton-violet' ng-click="cancelarVenta()">Cancelar</button>
+			<button class='bton bton-blue' ng-if="permisos == true" ng-click="imprimir()">Reimprimir Ticket</button>
+			<button class='bton bton-violet' ng-if="permisos == true" ng-click="liberar()">Liberar</button>
+		</div>
+		<div id="cont-tabla">
+			<table>
+			  <tbody>
+			    <tr ng-repeat="item in productosVenta">
+			      <td>{{item.cantidad}}</td>
+			      <td>{{item.producto.nombre}}</td>
+			      <td>${{item.precio}}</td>
+			      <td>{{item.estado.nombre}}</td>
+			      <td><button ng-click="eliminar_producto(item)"><i class="icono-crossCircle"></button></i></td>
+			    </tr>
+			    <tr class="tr-total">
+			    	<td colspan="4">Total: $<span class="total">{{total}}</span></td>
+			    </tr>
+			    <tr class="tr-total">
+					<th colspan="5">Nº de clientes <input type="number" ng-model="numClientes"><button class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" style="color:#000!important;background:#3F51B5!important;" ng-click="agregarClientes()">Enviar</button></td>
+				</tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+	<div id="cont-productos">
+			<div class="productos mdl-cell--12-col" id="principales" ng-class="r">
+					<div class="mdl-cell--4-col" ng-repeat="item in productosArray" ng-if="item.categoria.nombre == 'Carnes'">
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="agregarProducto(item.id)">{{item.nombre}}</button>
+					</div>
+				</div>
+				<div class="productos mdl-cell--12-col" id="entradas" ng-class="s">
+					<div class="mdl-cell--4-col" ng-repeat="item in productosArray" ng-if="item.categoria.nombre == 'Entradas'">
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="agregarProducto(item.id)">{{item.nombre}}</button>
+					</div>
+				</div>
+				<div class="productos mdl-cell--12-col" id="sopas" ng-class="t">
+					<div class="mdl-cell--4-col" ng-repeat="item in productosArray" ng-if="item.categoria.nombre == 'Para Llevar'">
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="agregarProducto(item.id)">{{item.nombre}}</button>
+					</div>
+				</div>
+				<div class="productos mdl-cell--12-col" id="bebidas" ng-class="v">
+					<div class="mdl-cell--4-col" ng-repeat="item in productosArray" ng-if="item.categoria.nombre == 'Bebidas'">
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="agregarProducto(item.id)">{{item.nombre}}</button>
+					</div>
+				</div>
+				<div class="productos mdl-cell--12-col" id="postres" ng-class="w">
+					<div class="mdl-cell--4-col" ng-repeat="item in productosArray" ng-if="item.categoria.nombre == 'Postres'">
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="agregarProducto(item.id)">{{item.nombre}}</button>
+					</div>
+				</div>
+				<div class="productos mdl-cell--12-col" id="otros" ng-class="x">
+					<div class="mdl-cell--4-col">
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="productoExtra()">Producto extra</button>
+					</div>
+					<div class="mdl-cell--4-col" ng-repeat="item in productosArray" ng-if="item.categoria.nombre == 'Otros'">
+						<button class="mdl-cell--12-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="agregarProducto(item.id)">{{item.nombre}}</button>
+					</div>
+				</div>
+	</div>
+	<div class="mdl-grid">
+       <dialog id="modal-pago" class="mdl-dialog mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--10-col-tablet mdl-cell--1-offset-tablet">
+		<div class="mdl-dialog__title mdl-color--primary"><label>Mesa {{numero_mesa}}</label></div>
+		<div class="mdl-dialog__content">
+			<div class="mdl-grid">
+				<p class="mdl-cell--7-col">Total:</p>
+				<p class="mdl-cell--5-col">${{total_venta}}</p>
+				<p class="mdl-cell--7-col">El cliente paga con:</p>
+				<input type="number" class="mdl-cell--5-col" ng-class="c" ng-init="c=''" ng-blur="calcularCambio()" ng-model="caja.pago">
+				<p class="mdl-cell--7-col">Aumento/Descuento</p>
+				<p class="mdl-cell--5-col">${{aumento.valor}}</p>
+				<p class="mdl-cell--7-col">Total despues de aumento/descuento</p>
+				<p class="mdl-cell--5-col">${{orden.total}}</p>
+				<p class="mdl-cell--7-col">Cambio</p>
+				<p class="mdl-cell--5-col">${{cambio}}</p>
+				<p class="mdl-cell--7-col">Método de pago</p>				
+				<select class="c-select mdl-typography--text-center mdl-cell--5-col" ng-model="caja.metodo_pago" ng-change="calcularAumento()" ng-options="item as item.nombre for item in tipos_pago_array track by item.id">
+				</select>
+				
+			</div>
+		</div>
+		<div class="mdl-dialog__actions">
+		<button class="mdl-button close">Cerrar</button>
+				<button class="mdl-button" ng-click="ticket()">Aceptar</button>
+		</div>
+	</dialog>
+	</div>
+	
+	<div class="mdl-grid">
+       <dialog id="modal-extra" class="mdl-dialog mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--10-col-tablet mdl-cell--1-offset-tablet">
+		<div class="mdl-dialog__title mdl-color--primary"><label>Mesa {{numero_mesa}}</label></div>
+		<div class="mdl-dialog__content">
+			<div class="mdl-grid">
+				<p class="mdl-cell--6-col">Nombre :</p>
+				<input class="mdl-cell--6-col" ng-model="extra.nombre">
+				<p class="mdl-cell--6-col">Precio :</p>
+				<input class="mdl-cell--6-col" ng-model="extra.precio">				
+			</div>
+		</div>
+		<div class="mdl-dialog__actions">
+		<button class="mdl-button close">Cerrar</button>
+				<button class="mdl-button" ng-click="agregarProductoExtra()">Aceptar</button>
+		</div>
+	</dialog>
+	</div>
+	
+</div>

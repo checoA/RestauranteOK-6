@@ -1,0 +1,95 @@
+<div id="content-reportes" ng-controller="ReportesController">
+	<div class="mdl-grid"  style="color:#000">
+	<div class="mdl-cell--12-col reporte">
+		<div class="mdl-cell--12-col reportes">
+			<input class="mdl-cell--2-col" type="date" ng-model="reporte.fecha_hoy" ng-change="actualizar()">
+			<input class="mdl-cell--2-col" type="date" ng-model="reporte.fecha_manana" ng-change="actualizar()">
+			<select class="mdl-cell--2-col" ng-model="reporte.tipo_venta" ng-change="cambiarTipoVenta()" ng-options="tipos.id as tipos.nombre for tipos in reporte.ventas">
+			</select>
+			<select class="mdl-cell--2-col" ng-model="reporte.tipo_gasto" ng-change="cambiarTipoGasto()" ng-options="tipos.nombre as tipos.nombre for tipos in reporte.gastos">
+			</select>
+			<button class="mdl-cell--2-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" style="color:#fff!important" ng-click="imprimir()">Imprimir</button>
+			<button class="mdl-cell--2-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" style="color:#fff!important" ng-click="imprimirMini()">Imprimir Mini</button>
+		</div>
+		</div>
+		<div class="mdl-cell--12-col">
+			<div class="mdl-cell--12-col reportes" id="print" ng-class="r" >
+				<table class="mdl-cell mdl-cell--12-col mdl-data-table" 
+							style="white-space: normal;">
+					<tr>
+						<td>#</td>
+						<td>Mesa</td>
+						<td>P. Llevar</td>
+						<td>Fecha</td>
+						<td>Detalles venta</td>
+						<td>Tipo Pago</td>
+						<td>Personas</td>
+						<td>Consumo</td>
+						<td>Subtotal</td>
+						<td>Aumento %</td>
+						<td>Total</td>
+					</tr>
+					<tr ng-repeat="item in ventasArray" ng-if="item.estado.id == 4 ? clase = 'cancelado' : clase = 'enabled'" ng-class="clase">
+						<td>{{item.id}}</td>
+						<td>{{item.numMesa}}</td>
+						<td>{{item.numParaLlevar}}</td>
+						<td>{{item.fecha}}</td>
+						<td><table class="mdl-cell mdl-cell--12-col mdl-data-table" 
+							style="white-space: normal;"><tr><td>#</td><td>Platillo</td><td>Total</td><td>Usuario</td></tr>
+						<tr ng-repeat="subitem in item.detalle_orden.$$state.value"><td>{{subitem.cantidad}}</td><td>{{subitem.producto.nombre}}</td><td>${{subitem.precio}}</td><td>{{subitem.usuario}}</td></tr></table></td>
+						<td>{{item.tipoPago.nombre}}</td>
+						<td>{{item.numPersonas}}</td>
+						<td>${{item.total/item.numPersonas}}</td>
+						<td>${{item.subtotal}}</td>
+						<td>{{item.aumento}}%</td>
+						<td>${{item.total}}</td>
+					</tr>
+					<tr>
+						<td colspan="7">Total Ventas: ${{totalVentas}}</td>
+					</tr>
+				</table>
+			<table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table" 
+							style="white-space: normal;">
+				<tr>
+					<td>Concepto</td>
+					<td>Fecha</td>
+					<td>Total</td>
+				</tr>
+				<tr ng-repeat="item in gastosArray">
+					<td>{{item.nombre}}</td>
+					<td>{{item.fecha}}</td>
+					<td>${{item.total}}</td>
+				</tr>
+				<tr>
+					<td colspan="3">Total Gastos: ${{totalGastos}}</td>
+				</tr>
+			</table>
+			<table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table" 
+							style="white-space: normal;">
+				<tr style="text-align:right;">
+					<td style="text-align:right;float:right;right:10px;position:absolute;">Total final: ${{totalUtilidad}}</td>
+				</tr>
+			</table>
+			</div>	
+			<div class="mdl-cell--12-col reportes reporte">
+				<select class="mdl-cell--2-col" ng-model="reporte.categoria" ng-change="filtroCategoria()" ng-options="categoria.id as categoria.nombre for categoria in reporte.categorias">
+				</select>
+				<button class="mdl-cell--2-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" style="color:#fff!important" ng-click="imprimirPlatillos()">Imprimir</button>
+				<button class="mdl-cell--2-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" style="color:#fff!important" ng-click="imprimirPlatillosMini()">Imprimir Mini</button>
+			</div>
+			<div class="mdl-cell--12-col reportes" id="print-platillos">
+			<table class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table" 
+							style="white-space: normal;">
+				<tr>
+					<td>Platillo</td>
+					<td>Número de ventas</td>
+				</tr>
+				<tr ng-repeat="item in masVendidosArray">
+					<td>{{item.nombre}}</td>
+					<td>{{item.cantidad}}</td>
+				</tr>
+			</table>
+			</div>	
+		</div>
+	</div>
+</div>

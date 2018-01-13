@@ -1,0 +1,50 @@
+<div id="content-inventario" ng-controller="InventarioController">
+	<div class="mdl-grid" id="grid">
+	
+		<div class="mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-cell--1-offset-desktop">
+			<div class="mdl-grid">
+				<!--<button class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-cell mdl-cell--12-col
+				mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+					Editar
+				</button>-->
+				<button id="a-inv" ng-click="agregar()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-cell mdl-cell--12-col
+				mdl-cell--4-col-tablet mdl-cell--2-col-phone button-general">
+					Agregar
+				</button>
+			</div>
+		</div>
+	
+		<table id="inventario" class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table" 
+						style="white-space: normal;">
+			<thead class="mdl-color--primary">
+				<tr>
+					<td class="mdl-data-table__cell--non-numeric mdl-color-text--white">Nombre</td>
+					<td class="mdl-color-text--white">Precio de compra</td>
+					<td class="mdl-color-text--white">Existencia</td>
+					<td class="mdl-color-text--white">Stock</td>
+					<td class="mdl-color-text--white"></td>
+				</tr>
+			</thead>
+			<tr ng-repeat="item in inventarioArray" ng-include="obtenerDatos(item)">
+				
+			</tr>
+		</table>
+	</div>
+</div>
+<script type="text/ng-template" id="t-normal">
+	<td>{{item.nombre}}</td>
+	<td>{{item.precio}}</td>
+	<td>{{item.existencia}}</td>
+	<td>{{item.stock}}</td>
+	<td><button ng-click="editar(item)" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-cell mdl-cell--12-col
+				mdl-cell--4-col-tablet mdl-cell--2-col-phone button-general">Editar</button></td>
+</script>
+<script type="text/ng-template" id="t-editar">
+	<td><input type="text" ng-model="seleccionado.nombre" /></td>
+	<td><input type="number" ng-model="seleccionado.precio" /></td>
+	<td><input type="number" ng-model="seleccionado.existencia" /></td>
+	<td><input type="number" ng-model="seleccionado.stock" /></td>
+	<td><button ng-click="guardar($index)" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Guardar</button>
+	<button ng-click="eliminar()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Eliminar</button>
+	<button ng-click="cancelar()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Cancelar</button></td>
+</script>

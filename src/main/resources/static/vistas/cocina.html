@@ -1,0 +1,45 @@
+
+<div id="content-cocina" ng-controller="CocinaController">
+<audio id="myAudio">
+  <source src="/sounds/dragon_ball_notificacion.mp3" type="audio/mpeg">
+</audio>
+	<div class="mdl-layout mdl-js-layout">
+         <main class="mdl-layout__content">
+         	<div class="mdl-grid">
+         	<label class="ton">Tono de notificacion : </label>
+         	<select class="mdl-typography--text-center ton" ng-model="tonos" ng-change="setTono()" ng-options="item as item.nombre for item in tonos_array track by item.id"></select>
+         	</div>
+            <div class="mdl-grid">
+               <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                  <div class="mdl-grid">
+					<button ng-repeat="item in ordenes" ng-if="item.numMesa != 0" ng-click="mostrarOrden(item.id,item.numMesa);" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-cell mdl-cell--3-col-desktop
+                     mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-js-ripple-effect ww show-dialog btn-cocina">Orden de mesa {{item.numMesa}}<div class="texto mdl-badge mdl-badge--overlap" ng-if="item.visto == false" data-badge=""></div></button>
+				  </div>
+			   </div>
+			</div>
+		</main>
+	</div>
+	
+ <div class="mdl-grid">
+       <dialog class="mdl-dialog mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--10-col-tablet mdl-cell--1-offset-tablet">
+       <div class="mdl-dialog__title mdl-color--primary"><label>Orden</label></div>
+		<div class="mdl-dialog__content">
+			<table>			
+				<tr ng-repeat="item in productosOrden">
+					<td><div class="texto mdl-badge mdl-badge--overlap" ng-if="item.visto == false" data-badge=""></div>{{item.cantidad}}</td>
+					<td>{{item.producto.nombre}}</td>
+					<td>{{item.estado.nombre}}</td>
+					<td ng-if="item.estado.id != 5"><button ng-click="entregarProducto(item)" class=" mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Entregar</button></td>
+				</tr>
+			</table>
+			<h6 ng-if="productosOrden[0] == 'null'">
+				No hay productos en esta orden para cocina
+			</h6>
+		</div>
+		<div class="mdl-dialog__actions">
+			<button class="mdl-button" ng-click="entregar()">Entregar</button>
+			<button class="mdl-button close">Cerrar</button>
+		</div>
+	</dialog>
+ </div>
+</div>

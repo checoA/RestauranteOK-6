@@ -1,0 +1,113 @@
+<div class="mdl-grid" id="login" ng-controller="LoginController">
+	<div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset">
+		<div class="izq-parent animation" ng-class="var1">
+			<div class="izq mdl-typography--text-center mdl-cell--12-col">
+				<img id="img-p" class="mdl-cell--10-col" src="./img/cooking-2132874_640.jpg">
+				<p class="mdl-cell--8-col mdl-cell--2-offset">El usuario por defecto es
+					"admin". Dentro del sistema también puedes agregar a tus empleados
+					y/o compañeros.</p>
+				<a class="a-i" ng-click="var1 = 'animate-izq';varizq ='animate-izq-detras'">Crear una cuenta</a>
+			</div>
+		</div>
+		 <div class="izq-parent animation" ng-init="varizq='detras-parent'" ng-class="varizq">
+			<div class="izq mdl-typography--text-center mdl-cell--12-col">
+			<img id="img-p" class="mdl-cell--10-col" src="./img/noodles-516635_640.jpg">
+				<p class="mdl-cell--8-col mdl-cell--2-offset">Cree una cuenta para acceder
+					al sistema, se le enviara un correo de confirmación</p>
+					<a class="a-d" ng-click="varizq = 'animate-izq-detras-regresar'; var1='animate-izq-regresar';">Regresar</a>
+			</div>
+		</div>
+		<div class="izq-parent detras-fijo-parent">
+			<div class="izq mdl-typography--text-center mdl-cell--12-col">
+			<form name="accountForm" novalidate>
+				<h1 class="c-enc cursiva" style="margin-top: 30px!important; margin-bottom:30px!important;">Nueva Cuenta</h1>
+				<div>
+					<alert class="alert alert-{{alerts.account.type}} mdl-cell--12-col">{{alerts.account.message}}</alert>
+					<input ng-model="account.user" ng-blur="exist()" name="user" class="c-text mdl-typography--text-center mdl-cell--8-col" type="text" placeholder="Usuario" required>
+					<span class="messages mdl-cell--12-col" ng-show="accountForm.$submitted || accountForm.user.$touched">
+						<span class="alert alert-danger" ng-show="accountForm.user.$error.required">El campo es obligatorio</span>
+					</span>
+					<input ng-model="account.password" name="password" class="c-text mdl-typography--text-center mdl-cell--8-col" type="password" placeholder="Contraseña" required>
+					<span class="messages mdl-cell--12-col" ng-show="accountForm.$submitted || accountForm.password.$touched">
+						<span class="alert alert-danger" ng-show="accountForm.password.$error.required">El campo es obligatorio</span>
+					</span>
+					<input ng-model="account.confirm_password" name="confirm_password" class="c-text mdl-typography--text-center mdl-cell--8-col" type="password" placeholder="Confirmar Contraseña" required>
+					<span class="messages mdl-cell--12-col" ng-show="accountForm.$submitted || accountForm.confirm_password.$touched">
+						<span class="alert alert-danger" ng-show="accountForm.confirm_password.$error.required">El campo es obligatorio</span>
+					</span>
+					<input ng-model="account.nombre" name="nombre" class="c-text mdl-typography--text-center mdl-cell--8-col" type="text" placeholder="Nombre" required>
+					<span class="messages mdl-cell--12-col" ng-show="accountForm.$submitted || accountForm.nombre.$touched">
+						<span class="alert alert-danger" ng-show="accountForm.nombre.$error.required">El campo es obligatorio</span>
+					</span>
+					<input ng-model="account.apepat" name="apepat" class="c-text mdl-typography--text-center mdl-cell--8-col" type="text" placeholder="Apellido Paterno" required>
+					<span class="messages mdl-cell--12-col" ng-show="accountForm.$submitted || accountForm.apepat.$touched">
+						<span class="alert alert-danger" ng-show="accountForm.apepat.$error.required">El campo es obligatorio</span>
+					</span>
+					<input ng-model="account.apemat" name="apemat" class="c-text mdl-typography--text-center mdl-cell--8-col" type="text" placeholder="Apellido Materno" required>
+					<span class="messages mdl-cell--12-col" ng-show="accountForm.$submitted || accountForm.apemat.$touched">
+						<span class="alert alert-danger" ng-show="accountForm.apemat.$error.required">El campo es obligatorio</span>
+					</span>
+					<!-- <input ng-model="account.correo" name="correo" class="c-text mdl-typography--text-center mdl-cell--8-col" type="email" placeholder="Correo" required>
+					<span class="messages mdl-cell--12-col" ng-show="accountForm.$submitted || accountForm.correo.$touched">
+						<span class="alert alert-danger" ng-show="accountForm.correo.$error.required">El campo es obligatorio</span>
+						<span class="alert alert-danger" ng-show="accountForm.correo.$error.email">Formato de email incorrecto.</span>
+					</span> -->
+					<select class="c-select mdl-typography--text-center mdl-cell--8-col" ng-model="account.permiso" ng-options="cuenta as cuenta.nombre for cuenta in cuentas track by cuenta.id">
+					</select> 
+					<input type="submit" ng-click="crear_cuenta()" type="button" value="Crear Cuenta" class="c-button mdl-cell--8-col">
+				</div>
+			</form>
+				
+			</div> 
+		</div>
+	</div>
+	<div class="mdl-cell mdl-cell--5-col">
+		<div class="der-parent animation" ng-class="var">
+	 		<div class="der mdl-typography--text-center mdl-cell--12-col">
+				<form name="loginForm" novalidate>
+					<h1 class="c-enc cursiva" style="margin-top: 30px !important;margin-bottom:30px!important;">BIENVENIDO</h1>
+					<div>
+						<alert class="alert alert-{{alerts.login.type}} mdl-cell--12-col">{{alerts.login.message}}</alert>
+						<input ng-model="login.nombre" name="nombre" class="c-text mdl-typography--text-center mdl-cell--8-col" type="text" placeholder="Usuario" required>
+							<span class="messages mdl-cell--12-col" ng-show="loginForm.$submitted || loginForm.nombre.$touched">
+							<span class="alert alert-danger" ng-show="loginForm.nombre.$error.required">El campo es obligatorio</span>
+							</span>
+							<input ng-model="login.password" name="password" class="c-text mdl-typography--text-center mdl-cell--8-col" type="password" placeholder="Password" required>
+							<span class="messages mdl-cell--12-col" ng-show="loginForm.$submitted || loginForm.password.$touched">
+							<span class="alert alert-danger" ng-show="loginForm.password.$error.required">El campo es obligatorio</span>
+							</span>
+						<input type="submit" ng-click="iniciar_sesion()" type="button" value="Iniciar Sesión" class="c-button mdl-cell--8-col">
+<!-- 						<a class="a-d" ng-click="var = 'animate-der';varder = 'animate-der-detras';">Olvide mi contraseña</a> -->
+					</div>
+				</form>
+			</div>
+		</div>
+ 		<div class="der-parent animation" ng-init="varder='detras-parent'" ng-class="varder">
+			<div class="der mdl-typography--text-center mdl-cell--12-col">
+				<img id="img-p" class="mdl-cell--10-col" src="./img/pasta-1181189_640.jpg">
+				<p class="mdl-cell--8-col mdl-cell--2-offset">Si olvidó su contraseña, llene los campos de verificación, se le mandara un correo con una contraseña nueva.</p>
+				<a class="a-i" ng-click="varder = 'animate-der-detras-regresar'; var = 'animate-der-regresar';">Regresar</a>
+			</div>
+		</div>
+		<div class="der-parent detras-fijo-parent">
+			<div class="der mdl-typography--text-center mdl-cell--12-col" >
+				<form name="recoverForm" novalidate>
+					<h1 class="c-enc cursiva" style="margin-top: 30px !important;margin-bottom:30px!important;">Recuperar Contraseña</h1>
+					<div>
+					<alert class="alert alert-{{alerts.recover.type}} mdl-cell--12-col">{{alerts.recover.message}}</alert>
+						<input ng-model="recover.usuario" name="usuario" class="c-text mdl-typography--text-center mdl-cell--8-col" type="text" placeholder="Usuario" required>
+						<span class="messages mdl-cell--12-col" ng-show="recoverForm.$submitted || recoverForm.usuario.$touched">
+							<span class="alert alert-danger" ng-show="recoverForm.usuario.$error.required">El campo es obligatorio</span>
+							</span>
+						<input ng-model="account.correo" name="correo" class="c-text mdl-typography--text-center mdl-cell--8-col" type="text" placeholder="Correo de recuperación" required>
+						<span class="messages mdl-cell--12-col" ng-show="recoverForm.$submitted || recoverForm.correo.$touched">
+							<span class="alert alert-danger" ng-show="recoverForm.correo.$error.required">El campo es obligatorio</span>
+							<span class="alert alert-danger" ng-show="recoverForm.correo.$error.email">Formato de email incorrecto.</span>
+							</span>
+						<input ng-click="recuperar_contrasena()" type="submit" value="Recuperar" class="c-button mdl-cell--8-col">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

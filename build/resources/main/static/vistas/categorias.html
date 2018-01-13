@@ -1,0 +1,13 @@
+<div ng-controller="CategoriasController" id="content-categorias">
+	<div class="mdl-grid" id="grid">
+		<div>
+			<input type="text" ng-model="categorias.nombre">
+			<button ng-click="guardar()">Guardar</button>
+		</div>
+		<div ng-repeat="item in categoriasArray">
+			<p>{{item.nombre}}</p>
+			<button ng-click="editar(item)">Editar</button>
+			<button ng-click="eliminar(item)">Eliminar</button>
+		</div>
+	</div>
+</div>

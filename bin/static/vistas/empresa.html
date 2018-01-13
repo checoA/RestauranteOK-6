@@ -1,0 +1,22 @@
+<div id="content-empresa" ng-controller="EmpresaController">
+	<div class="mdl-grid" id="grid">
+		<div class="mdl-grid" id="empresa">
+			<h5 class="mdl-cell--12-col">Datos de la empresa</h5>
+			<p class="mdl-cell--6-col">Nombre</p>
+			<input class="mdl-cell--6-col" type="text" ng-model="empresa.nombre">
+			<p class="mdl-cell--6-col">Telefono</p>
+			<input class="mdl-cell--6-col" type="text" ng-model="empresa.telefono">
+			<p class="mdl-cell--6-col">RFC</p>
+			<input class="mdl-cell--6-col" type="text" ng-model="empresa.rfc">
+			<p class="mdl-cell--6-col">Dirección</p>
+			<input class="mdl-cell--6-col" type="text" ng-model="empresa.direccion">
+			<p class="mdl-cell--6-col">Colonia</p>
+			<input class="mdl-cell--6-col" type="text" ng-model="empresa.colonia">
+			<p class="mdl-cell--6-col">Código Postal</p>
+			<input class="mdl-cell--6-col" type="text" ng-model="empresa.codigo">
+			<p class="mdl-cell--6-col">Ciudad</p>
+			<input class="mdl-cell--6-col" type="text" ng-model="empresa.ciudad">
+			<button class="mdl-cell--6-col mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general" ng-click="save()">Guardar</button>
+		</div>
+	</div>
+</div>

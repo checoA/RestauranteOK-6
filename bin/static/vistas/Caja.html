@@ -1,0 +1,76 @@
+<div id="content-caja" ng-controller="CajaController">
+	<div class="mdl-grid" id="grid">
+		<div id="c-o-caja">
+			<table  id="ordenes-caja">
+				<tr>
+					<td>Numero de mesa</td>
+					<td>Total a pagar</td>
+				</tr>
+				<tr ng-repeat="item in pendientesCobro">
+					<td>Mesa {{item.numMesa}}</td>
+					<td>${{item.total}}</td>
+					<td><button id="btn-rv" ng-click="realizarVenta(item)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-cell mdl-cell--12-col-desktop
+                     mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-js-ripple-effect">Realizar Venta</button></td>
+                    <td><button id="btn-rv" ng-click="imprimir(item)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-cell mdl-cell--12-col-desktop
+                     mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-js-ripple-effect">Reimprimir ticket</button></td> 
+                     <td><button id="btn-rv" ng-click="liberar(item)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-cell mdl-cell--12-col-desktop
+                     mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-js-ripple-effect">Liberar</button></td> 
+                     <td><button id="btn-dv" ng-click="detalleVenta(item)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-cell mdl-cell--12-col-desktop
+                     mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-js-ripple-effect">Detalle</button></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+ 	<div class="mdl-grid">
+		<dialog id="modal-detalle" class="mdl-dialog mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--10-col-tablet mdl-cell--1-offset-tablet">
+			<div class="mdl-dialog__title mdl-color--primary"><label>Mesa {{numero_mesa}}</label></div>
+			<div class="mdl-dialog__content">
+				<div class="mdl-grid">
+					<table class="mdl-cell mdl-cell--12-col mdl-data-table">
+						<tr>
+							<td>Cantidad</td>
+							<td>Platillo</td>
+							<td>Precio</td>
+						</tr>
+						<tr ng-repeat="item in detallesArray">
+							<td>{{item.cantidad}}</td>
+							<td>{{item.producto.nombre}}</td>
+							<td>${{item.precio}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		<div class="mdl-dialog__actions">
+			<button class="mdl-button close" ng-click="cerrar()">Cerrar</button>
+		</div>
+		</dialog> 
+	</div>
+	
+	<div class="mdl-grid">
+       <dialog id="modal-pago" class="mdl-dialog mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--10-col-tablet mdl-cell--1-offset-tablet">
+		<div class="mdl-dialog__title mdl-color--primary"><label>Mesa {{numero_mesa}}</label></div>
+		<div class="mdl-dialog__content">
+			<div class="mdl-grid">
+				<p class="mdl-cell--7-col">Total:</p>
+				<p class="mdl-cell--5-col">${{total_venta}}</p>
+				<p class="mdl-cell--7-col">El cliente paga con:</p>
+				<input type="number" class="mdl-cell--5-col" ng-class="c" ng-init="c=''" ng-blur="calcularCambio()" ng-model="caja.pago">
+				<p class="mdl-cell--7-col">Aumento/Descuento</p>
+				<p class="mdl-cell--5-col">${{aumento.valor}}</p>
+				<p class="mdl-cell--7-col">Total despues de aumento/descuento</p>
+				<p class="mdl-cell--5-col">${{orden.total}}</p>
+				<p class="mdl-cell--7-col">Cambio</p>
+				<p class="mdl-cell--5-col">${{cambio}}</p>
+				<p class="mdl-cell--7-col">Método de pago</p>				
+				<select class="c-select mdl-typography--text-center mdl-cell--5-col" ng-model="caja.metodo_pago" ng-change="calcularAumento()" ng-options="item as item.nombre for item in tipos_pago_array track by item.id">
+				</select>
+				
+			</div>
+		</div>
+		<div class="mdl-dialog__actions">
+		<button class="mdl-button close">Cerrar</button>
+				<button class="mdl-button" ng-click="ticket()">Aceptar</button>
+		</div>
+	</dialog>
+	</div>
+</div>

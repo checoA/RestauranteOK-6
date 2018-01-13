@@ -1,0 +1,592 @@
+*{
+	/*margin: 0px;*/
+
+	font: bold 14px Arial, sans-serif;
+}
+
+#cont-calculadora,div#cont-categorias{
+	position: fixed;
+}
+.bton-blue{
+	background: #3F51B5;
+	border: 0;
+	border-bottom: 4px solid rgb(33, 42, 94);
+}
+.bton-violet{
+	background: #FF4081;
+	border: 0 solid rgb(102, 0, 34);
+	border-bottom: 4px solid rgb(102, 0, 34);
+}
+.bton{
+	height: 25%;color: white;position: relative;
+	-web-transition: all .02s;
+	transition: all .02s;
+}
+.bton:active{
+	border-bottom: 0;
+	top: 1px;
+	
+}
+.color-1{background: rgba(224, 126, 47, .6) !important;}
+.color-2{background: rgba(47, 224, 126, .6) !important;}
+.color-3{background: rgba(224, 76, 47, .6) !important;}
+.color-4{background: rgba(150, 47, 224, .6) !important;}
+.color-5{background: rgba(153, 95, 61, .6) !important;}
+.color-6{background: rgba(84, 154, 43, .6) !important;}
+/*----------------------------------------------*/
+#cont-calculadora{
+	width: 45%; height: 50%;
+}
+
+#calculadora {
+	width: 90%;
+	height: auto;
+	padding: 20px 20px 9px;
+	margin: 0 auto;
+	margin-top: 4px;
+	/*background: #9dd2ea;*/
+	/*background: 1e90ff;*/
+	background: #2e4366;
+	/*background: linear-gradient(#1e90ff, #1e90dd);*/
+	border-radius: 3px;
+	/*box-shadow: 0px 4px #009de4,0px 10px 15px rgba(0, 0, 0, 0.2);*/
+	box-shadow: 0px 4px #aaa,0px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.top span.clear {float: left;}
+
+.top .screen {
+	height: 40px;
+	width: 100%;
+	margin-bottom: 5px;
+	padding: 10px;
+
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
+	
+	/* Typography */
+	font-size: 1.4em;
+	line-height: 40px;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	/*text-align: right;*/
+	letter-spacing: 1px;
+}
+
+.keys, .top {overflow: hidden;}
+
+.keys span, .top span.clear {
+	float: left;
+	position: relative;
+	top: 0;
+	padding-top: 1%; 
+	cursor: pointer;
+	width: 23%;
+	height: 46px;
+	background: white;
+	border-radius: 3px;
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+	
+	/*margin: 0 7px 11px 0;*/
+	margin: 1%;
+	
+	color: #888;
+	line-height: 36px;
+	text-align: center;
+	
+	/* prevent selection of text inside keys */
+	user-select: none;
+	
+	/* Smoothing out hover and active states using css3 transitions */
+	-web-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+
+.keys span.operator {
+	background: #FFF0F5;
+	margin-right: 0;
+}
+
+.keys span.eval {
+	background: #f1ff92;
+	box-shadow: 0px 4px #9da853;
+	color: #888e5f;
+}
+
+span.clear {
+	background: tomato;
+	box-shadow: 0px 4px #ff7c87;
+	color: white;
+}
+
+/* Some hover effects */
+.keys span:hover {
+	background: #9c89f6;
+	box-shadow: 0px 4px #6b54d3;
+	color: white;
+}
+
+.keys span.eval:hover {
+	background: #abb850;
+	box-shadow: 0px 4px #717a33;
+	color: #ffffff;
+}
+
+.top span.clear:hover {
+	background: #f68991;
+	box-shadow: 0px 4px #d3545d;
+	color: white;
+}
+
+/* Simulating "pressed" effect on active state of the keys by removing the box-shadow and moving the keys down a bit */
+.keys span:active {
+	box-shadow: 0px 0px #6b54d3;
+	top: 4px;
+}
+
+.keys span.eval:active {
+	box-shadow: 0px 0px #717a33;
+	top: 4px;
+}
+
+.top span.clear:active {
+	top: 4px;
+	box-shadow: 0px 0px #d3545d;
+}
+
+/*----------------------------------------------*/
+#cont-categorias{
+	left: 45%;
+	width: 40%;
+	height: 100px;
+	margin: 0 7.5%;;	
+	white-space:nowrap;
+	overflow-x:auto;
+	overflow-y:hidden;
+	display:inline;
+	/*background: gray;*/
+}
+
+.grupo-categorias{height: 100%;}
+
+.btn-categoria{
+	width: 20%;
+	position: initial;
+	display: inline;
+	float: none;
+	height: 100px;
+	cursor: pointer;
+	padding: 3px;
+	background: transparent;
+	border: transparent;
+}
+
+label.btn-categoria{display: inline-block;}
+
+.btn-categoria>img{
+	width: 100%;
+	height: 100%;
+	/*border-radius: 5px;*/
+}
+
+.btn-categoria>span{
+	padding: 4px;
+	font-size: 1em;
+	font-weight: bolder;
+	position: relative;
+	display: inline;
+	top: -10px;
+	left: -90px!important;
+	background: rgba(0,0,0, .6);
+	width: 80%;
+	color: whitesmoke;
+	border-radius: 3px 0 0px 3px;
+	text-align: center;
+}
+
+label.btn-categoria{visibility: hidden;}
+
+/*----------------------------------------------*/
+#cont-comanda{
+  width: 40%;
+	margin: 0 2.5%;
+	height: 35%;
+	position: fixed;
+	top: 65%;
+	overflow-y: auto;
+}
+
+#cont-comanda table button{
+	background:transparent!important;
+}
+
+#cont-comanda input{
+	width:100px;
+	padding:5px;
+}
+
+#cont-tabla>table,tr,td{
+	border-collapse: collapse;
+	padding-top:10px!important;
+	padding-bottom:10px!important;
+}
+#cont-tabla>table{
+	box-shadow: 
+		0px 1px 2px rgba(135, 24, 18, .3),
+		0px 3px 4px rgba(112, 20, 15, .3),
+		0px 5px 6px rgba(90, 16, 12, .3),
+		0px 7px 8px rgba(67, 12, 9, .3),
+		0px 9px 10px rgba(45, 8, 6, .3),
+		0px 11px 12px rgba(22, 4, 3, .3),
+		0px 13px 14px rgba(0,0,0,.3);
+	margin-bottom: 20px;
+	background: #fff;
+	font-family: courier, Verdana, sans-serif;
+	font-size:1.6em;
+}
+#cont-tabla td{
+	padding: 2px 5px;
+	color: #777;
+}
+#cont-tabla tr{
+	border-bottom: 2px solid rgba(119, 119, 119, .4);
+}
+#cont-comanda>#cont-tabla{width: 75%;height: 80%; float: left; position: relative; margin: 0 2.5%;}
+#cont-comanda>#cont-tabla>table{width: 100%;}
+#ver-comanda{visibility: hidden;}
+.acciones{width: 20%; height: 80%; position: relative; float: right;}
+.acciones>button{width: 100%;}
+/*.total{width: 96%; clear: both; height: 20%; margin: 2%;}*/
+.icono-crossCircle{
+	color: rgb(173, 35, 31) !important;
+}
+.icono-crossCircle:focus{
+	color: rgba(173, 35, 31, .6) !important; 
+}
+.icono-crossCircle:active{
+	color: rgba(173, 35, 31, .8) !important; 
+}
+tr.tr-total{
+	text-align: right;
+}
+/*----------------------------------------------*/
+#cont-productos{
+	padding: 20px;
+	width: 40%;
+	height: 72%;
+	margin: 0 7.5%;
+	/*background: orange;*/
+	position: fixed;
+	top: 28%;
+	left: 45%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background: #fff;
+}
+#cont-productos>div>div{
+	display: inline-block;
+	float: left;
+	position:relative;
+
+}
+#cont-productos>div>div>button{
+		height: 100px!important;
+}
+
+
+.producto{
+	font-size: 1.2em!important;
+	position: relative;
+	background: rgba(50, 73, 111, 1);
+	color: white;
+ 	height: 100px!important;
+ 	width: 100px!important;
+	border-radius: 50%;
+	float: left;
+}
+/*----------------------------------------------*/
+@media screen and (max-width: 350px){
+	#cont-calculadora{
+		width: 75%
+	}
+	#cont-categorias{
+		width: 25%;
+		left: 75%;
+	}
+	.btn-categoria>span{
+		/*font-size: .85em;*/
+	}
+}
+@media screen and (min-width: 1300px){
+	#cont-comanda{
+		top: 65%;
+	}
+	#cont-calculadora{
+		height: auto;
+	}
+	.btn-categoria>span{
+	top: -10px;
+	left: -100px!important;
+	}
+}
+@media screen and (max-width: 1200px){
+	#cont-comanda{
+		top: 65%;
+	}
+	.btn-categoria>span{
+		left: -12px;
+	}
+	.producto{
+		/*height: 95%;*/
+	}
+}
+@media screen and (max-width: 1100px){
+	#cont-categorias{
+		overflow-x: auto;
+		overflow-y: hidden;
+		white-space: nowrap;
+	}
+	.btn-categoria{
+		width: 33.333%;
+		display: inline;
+		float: none;
+	}
+	/* .producto{
+		height: 85%;
+	} */
+}
+
+@media screen and (max-width: 1000px){	
+	#cont-categorias{
+		height: 18%;
+	}
+	#cont-productos{
+		height: 82%;
+		/*top: 18%;*/
+	}
+	/* .producto{
+		height: 93%;
+	} */
+}
+@media screen and (min-height: 1024px){	
+	#cont-productos{
+		height: 50%;
+		top: 45%;
+		width: 80%;
+		left: 10%;
+    	margin: 0;
+		padding: 0 40px;
+	}
+	#cont-calculadora{
+		width: 59%!important;
+		left:7%;
+		height:30%;
+	}
+	#calculadora{
+		height: 100%!important;
+	}
+	#calculadora .keys span,#calculadora .screen{
+		font-weight: bolder;
+		font-size: 2em!important;
+	}
+	#cont-categorias{
+		height: 35%!important;
+		width:40%!important;
+		margin-left:20%;
+		display:inline-block!important;
+		white-space: inherit;
+	}
+	
+	#cont-comanda{
+		top:45%;
+		width: 80%;
+		height: 40%;
+		left:10%;
+		visibility: hidden;
+	}
+	.btn-categoria{
+		width: 33.333%;
+		display:inline-block;
+	}
+	label.btn-categoria{
+	top: -60px!important;
+	left: -15px!important;
+	visibility: visible;
+	}
+	.btn-categoria>span{
+	padding: 4px;
+	font-size: 1.6em;
+	font-weight: bolder;
+	position: relative;
+	display: inline-block;
+	top: -60px!important;
+	left: -15px!important;
+	background: rgba(0,0,0, .6);
+	color: whitesmoke;
+	border-radius: 3px 0 0px 3px;
+	text-align: center;
+}
+	#ver-comanda:checked ~ #cont-productos{
+		width: 0px;
+		height: 0px;
+		display: none;
+	}
+	#ver-comanda:checked ~ #cont-comanda{
+		visibility: visible;
+	}
+	.btn-categoria>span{
+		left: -100px;
+		top: 5px;
+	}
+}
+
+@media screen and (max-width: 600px){
+	.btn-categoria{
+		width: 50%;
+		height: 85px;
+	}
+}
+@media screen and (max-width: 500px){	
+	#cont-calculadora{
+		width: 70%;
+		height: 45%;
+	}
+	#cont-categorias{
+	
+		width: 30%;
+		/*left: 68.5%;*/
+		/*height: 45%;*/
+    left: 70%;	
+	}
+	#cont-productos{
+		height: 55%;
+		top: 45%;
+	}
+	#cont-comanda{
+		width: 100%;
+	}
+	.btn-categoria>img{
+		visibility: hidden;
+		height: 0;
+		width: 0;
+	}
+	.btn-categoria{
+		display: block;
+		width: 100%;
+		height: 16.666%;
+		margin: 0;
+		/*margin-top: 4px;
+		padding: 0px;*/
+		/*background: blue;*/
+	}
+	.btn-categoria>span{
+		top: 0px;
+		border-radius: 5px;
+		width: 100%;
+	  	height: 40px;
+		padding-top: 10px;
+		font-size: .85em;
+		background: rgba(0,0,0,.8);*/
+	}
+	.keys span, .top span.clear{
+		height: 36px;
+	}
+	#visualizar{
+		visibility: visible;
+	}
+}
+@media screen and (max-width: 400px){
+	
+}
+@media screen and (max-height: 700px) and (max-width: 400px){
+	#cont-calculadora{
+		height: 290px;
+	}
+	#cont-productos{
+		/*top: 290px;*/
+	}
+	#cont-comanda{
+		top: 62%!important;
+	}
+	
+}
+
+@media screen and (max-height: 650px) and (max-width: 1100px){
+	#content-barra{
+		height:100%!important;
+	}
+	
+	#cont-calculadora{
+		height: 300px;
+	}
+		#cont-productos{
+		top: 30%;
+		height: 60%!important;
+	}
+	
+	#cont-productos>div>div{
+		padding:5px!important;
+		margin:0!important;
+	}
+	
+	.producto{
+		font-size: 1.4em;
+		color: white;
+	 	height: 100px!important;
+	 	width: 100px!important;
+	}
+	
+	#cont-comanda{
+		top: 67%!important;
+		height: 33%!important;
+	}
+	#cont-categorias{
+		overflow-x: scroll;
+		overflow-y: hidden;
+		white-space: nowrap;
+	}
+	.btn-categoria>span{
+		top: 5px;
+		left: -120px!important;
+		font-size:1.6em;
+	}
+	.btn-categoria{
+		width: 33.333%;
+		display: inline;
+		float: none;
+	}
+	label.btn-categoria{
+		display: none;
+	}
+}
+
+@media screen and (max-height: 600px) and (max-width: 1100px){
+	#cont-calculadora{
+		height: 290px;
+	}
+	#cont-productos{
+		top: 32%;
+	}
+	#cont-comanda{
+		top: 68%!important;		
+	}	
+}
+
+@media screen and (max-height: 400px) and (max-width: 1100px){
+	#cont-comanda{
+		background-color:white;
+		top:20%!important;
+		height:80%;
+	}	
+}
+
+/* @media screen and (max-height: 1100px) and (max-width: 650px){
+	#cont-productos{
+		top: 30%;
+		height: 40%;
+	}
+} */
+
+
+

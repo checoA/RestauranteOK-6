@@ -1,0 +1,12 @@
+<div ng-controller="MessagesController" id="content-messages">
+	<div class="mdl-grid" id="grid" style="color:#000">
+	    <div>
+    	    <h1>Messages</h1>
+        	<p ng-repeat="message in messages">{{message}}</p>
+    	</div>
+    	<div ng-disabled="$scope.client != undefined">
+	        <label>Mensaje</label><input type="text" ng-model="text"/>
+	        <button id="sendName" ng-click="sendName();">Send</button>
+    	</div>
+	</div>
+</div>

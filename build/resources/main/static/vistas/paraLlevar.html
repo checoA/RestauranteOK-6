@@ -1,0 +1,28 @@
+<div  id="content-mesas" ng-controller="ParaLlevarController">
+<div class="mdl-grid" id="grid">
+<div class="mdl-cell--3-col">
+	<div class="marca-agua">
+		<div class="texto">
+			<h6>Configuraci&oacute;n</h6>
+		</div>
+		<div class="configuracion">
+			<button class="left" ng-disabled="habilitado" ng-click="add()"><i class="icono-plusCircle"></i></button>
+			<button class="right" ng-click="del()"><i class="icono-crossCircle"></i></button>
+		</div>
+		<img class="" src="./img/table-setting-2395450_640.jpg">
+	</div>
+</div>
+<div class="mdl-cell--3-col mdl-cell--4-col-tablet" ng-repeat="item in paraLlevarArray">
+	<div class="marca-agua">
+		<div class="texto mdl-badge mdl-badge--overlap" data-badge="{{item.estado.nombre}}">
+			<h6>Para Llevar {{item.num_mesa}}</h6>
+			<button class="mdl-button mdl-cell--12-col" ng-if="item.estado.id==5" ng-click="ordenar(item.num_mesa,true,item.estado)">Agregar</button>
+			<button class="mdl-button mdl-cell--12-col" ng-if="item.estado.id==7" ng-click="ordenar(item.num_mesa,false,0)">Ordenar</button>
+			<button class="mdl-button mdl-cell--12-col" ng-if="item.estado.id==8" ng-click="ordenar(item.num_mesa,true,0)">Agregar</button>
+			<button class="mdl-button mdl-cell--12-col" ng-if="item.estado.id==6" ng-click="ordenar(item.num_mesa,true,item.estado)">Agregar</button>
+		</div>
+		<img class="" src="./img/table-setting-2395450_640.jpg">
+	</div>
+</div>
+</div>
+</div>

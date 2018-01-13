@@ -1,0 +1,56 @@
+<div id="content-configuraciones" ng-controller="ConfiguracionesController">
+	<div class="mdl-grid" id="grid">
+	<div class="mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-cell--1-offset-desktop">
+			<div class="mdl-grid">
+				<!--<button class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-cell mdl-cell--12-col
+				mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+					Editar
+				</button>-->
+				<button id="a-inv" ng-click="agregar()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-cell mdl-cell--12-col
+				mdl-cell--4-col-tablet mdl-cell--2-col-phone button-general">
+					Agregar
+				</button>
+			</div>
+		</div>
+			<table id="inventario" class="mdl-cell mdl-cell--12-col mdl-data-table mdl-js-data-table" 
+						style="white-space: normal;">
+			<thead class="mdl-color--primary">
+				<tr>
+					<td class="mdl-data-table__cell--non-numeric mdl-color-text--white">Nombre</td>
+					<td class="mdl-color-text--white">Valor</td>
+					<td class="mdl-color-text--white">Nombre para mostrar</td>
+					<td class="mdl-color-text--white">¿Aparece en ticket?</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tr ng-repeat="item in configuracionesArray" ng-include="obtenerDatos(item)">
+				
+			</tr>
+		</table>
+		</div>
+	</div>
+<script type="text/ng-template" id="t-normal">
+	<td>{{item.nombre}}</td>
+	<td>{{item.valor}}</td>
+	<td>{{item.nombreParaMostrar}}</td>
+	<td ng-if="item.ticket ? v = 'SI' : v = 'NO'">{{v}}</td>
+	<td><button ng-click="editar(item)" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised mdl-cell mdl-cell--12-col
+				mdl-cell--4-col-tablet mdl-cell--2-col-phone button-general">Editar</button></td>
+</script>
+<script type="text/ng-template" id="t-editar">
+	<td ng-model="seleccionado.nombre">{{item.nombre}}</td>
+	<td><input type="text" ng-model="seleccionado.valor" /></td>
+	<td><input type="text" ng-model="seleccionado.nombreParaMostrar"/></td>
+	<td><input type="checkbox" ng-model="seleccionado.ticket" /></td>
+	<td><button ng-click="guardar($index)" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Guardar</button>
+	<button ng-click="cancelar()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Cancelar</button></td>
+</script>
+<script type="text/ng-template" id="t-editar-todo">
+<td><input type="text" ng-model="seleccionado.nombre"></td>
+<td><input type="text" ng-model="seleccionado.valor" /></td>
+<td><input type="text" ng-model="seleccionado.nombreParaMostrar"/></td>
+<td><input type="checkbox" ng-model="seleccionado.ticket" /></td>
+<td><button ng-click="guardar($index)" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Guardar</button>
+<button ng-click="eliminar()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Eliminar</button>
+<button ng-click="cancelar()" class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised button-general">Cancelar</button></td>
+</script>

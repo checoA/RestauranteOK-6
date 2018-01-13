@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RestauranteOK</title>
+</head>
+<body ng-app="restaurante" ng-controller="controladorPrincipal" ng-init="mesaOrden='';bandera=false;estado=0;">
+<section class="mdl-grid--no-spacing" id="encabezado" ng-if="menu[0] != null">
+	<div class="menu_barra">
+		<a class="bt-menu" ng-init="r = ''" ng-click="r == '' ? r = 'recorrer' : r = ''"><span class="icon-list2"></span>Menu</a>
+	</div>
+	<nav class="mdl-cell--12-col mdl-typography--text-center" ng-class="r">
+		<ul>
+			<li ng-repeat="item in menu"><a ng-init="d=''" ng-click="d == '' ? d = 'deslizar' : d = ''; navegar(item.accion);">{{item.texto}}<div class="texto mdl-badge mdl-badge--overlap" ng-if="(item.texto == 'Mesas' && entregar) || (item.texto =='Cocina' && cocinaAlert)" data-badge="1"></div></a>
+				<ul class="submenu" ng-class="d">
+					<li ng-repeat="subItem in item.submenu"><a ng-click="d == '' ? d = 'deslizar' : d = ''; navegar(subItem.accion);">{{subItem.texto}}</a></li>
+				</ul>
+			</li>
+		</ul>	
+	</nav>
+</section>
+	<div ng-view id="cuerpo"></div>
+
+	<link rel="stylesheet" href="./css/restaurante.css">
+	<link rel="stylesheet" href="./css/barra.css">
+	<link rel="stylesheet" href="./css/material.min.css">
+	<link rel="stylesheet" href="./css/icono.min.css">
+	<link rel="stylesheet" href="./css/drag-and-drop.css">
+	<link rel="stylesheet" href="./css/dialog-polyfill.css">
+	<link rel="stylesheet" href="./css/material.min.css.map">
+
+	<script src="./js/lib/angular.min.js"></script>
+	<script src="./js/lib/material.min.js"></script>
+	<script src="./js/lib/angular-route.min.js"></script>
+	<script src="./js/lib/angular-resource.min.js"></script>	
+	<script src="./js/lib/sockjs.min.js"></script>
+	<script src="./js/lib/stomp.min.js"></script>
+	<script src="./js/lib/dialog-polyfill.js"></script>
+		
+	<script src="./js/lib/sha512.js"></script>
+	<script src="./js/main/main.js"></script>
+	
+	<script src="./js/main/rutas.js"></script>
+	<script src="./js/main/directivas.js"></script>
+	<script src="./js/controladores/controladores.js"></script>
+	<script src="./js/servicios/servicios.js"></script>
+	
+	<script src="./js/controladores/loginController.js"></script>
+	<script src="./js/servicios/loginService.js"></script>
+	
+	<script src="./js/controladores/mesasController.js"></script>
+	<script src="./js/servicios/mesasService.js"></script>
+	
+	<script src="./js/controladores/barraController.js"></script>
+	<script src="./js/servicios/barraService.js"></script>
+	
+	<script src="./js/controladores/cocinaController.js"></script>
+	<script src="./js/servicios/cocinaService.js"></script>
+	
+	<script src="./js/controladores/cajaController.js"></script>
+	<script src="./js/servicios/cajaService.js"></script>
+	
+	<script src="./js/controladores/empresaController.js"></script>
+	<script src="./js/servicios/empresaService.js"></script>
+	
+	<script src="./js/controladores/inventarioController.js"></script>
+	<script src="./js/servicios/inventarioService.js"></script>
+	
+	<script src="./js/controladores/productosController.js"></script>
+	<script src="./js/servicios/productosService.js"></script>
+	
+	<script src="./js/controladores/usuariosController.js"></script>
+	<script src="./js/servicios/usuariosService.js"></script>
+	
+	<script src="./js/controladores/gastosController.js"></script>
+	<script src="./js/servicios/gastosService.js"></script>
+	
+	<script src="./js/controladores/reportesController.js"></script>
+	<script src="./js/servicios/reportesService.js"></script>
+	
+	<script src="./js/controladores/messagesController.js"></script>
+	<script src="./js/servicios/messagesService.js"></script>
+	
+	<script src="./js/controladores/categoriasController.js"></script>
+	<script src="./js/servicios/categoriasService.js"></script>
+	
+	<script src="./js/controladores/configuracionesController.js"></script>
+	<script src="./js/servicios/configuracionesService.js"></script>
+	
+	<script src="./js/controladores/paraLlevarController.js"></script>
+	<script src="./js/servicios/paraLlevarService.js"></script>
+	
+	<script src="./js/controladores/barraParaLlevarController.js"></script>
+	<script src="./js/servicios/barraParaLlevarService.js"></script>
+	
+	<script src="./js/main/ticket.js"></script>
+	<script src="./js/main/reporteMini.js"></script>
+	<script src="./js/main/ticketPreviaVenta.js"></script>
+	
+</body>
+</html>
